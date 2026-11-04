@@ -1,7 +1,1977 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The Thoughtful Basket — Little things, lovely gifts</title><meta name="description" content="Discover thoughtful gift baskets, ceramic mugs, candles, soaps and delicious little treats."><link rel="stylesheet" href="styles.css"></head><body><div class="announcement">A LITTLE COMFORT. A LITTLE JOY. A GIFT THAT FEELS PERSONAL.</div><header><a class="logo" href="#">the thoughtful basket<span> ✷</span></a><nav><a href="#shop">Shop all</a><a href="#occasions">By occasion</a><a href="#story">Meet Laura</a></nav><button class="bag" onclick="toggleCart(true)">Bag <span id="count">0</span></button></header><main><section class="hero"><div class="hero-copy"><div class="eyebrow">Thoughtfully chosen · Beautifully given</div><h1>Little things.<br><em>Lovely gifts.</em></h1><p class="intro">A favorite mug. Something sweet. A moment of calm. Discover feel-good gifts for the people who make life beautiful.</p><a class="btn" href="#shop">Find their perfect gift &nbsp; ↗</a></div><div class="hero-img"><img src="assets/gift-basket-hero.png" alt="A wicker gift basket filled with a mug, coffee, tea, cookies, chocolate, a candle and soap"><div class="note">Good things come<br>in thoughtful packages.<small>FOR EVERY LITTLE OCCASION</small></div></div></section><div class="ribbon"><span>✧ &nbsp; Gifts for everyday moments</span><span>♡ &nbsp; Add your personal message</span><span>✷ &nbsp; A little something for everyone</span></div><section class="section" id="shop"><div class="section-head"><div><div class="eyebrow">The gift edit</div><h2>Something they’ll love.</h2></div><p>Small delights. Meaningful moments.</p></div><div class="filters" id="filters"></div><div class="grid" id="products"></div><p class="demo" style="margin-top:25px">Preview collection · Sample products and prices</p></section><section class="story owner-story" id="story"><div class="portrait-wrap"><img src="assets/laura-lawler.jpg" alt="Laura Lawler, owner of The Thoughtful Basket"><span class="owner-caption">Laura Lawler · Small business owner</span></div><div class="story-copy"><div class="eyebrow">A small business with a personal touch</div><h2>Meet Laura.<br>The heart behind the gifts.</h2><p>The Thoughtful Basket is a small business owned by <strong>Laura Lawler</strong>. From cheerful mugs to comforting treats and gift baskets, this is a place to find a little something that says you care.</p><p>Whether you’re celebrating a birthday, saying thank you, or sending a little encouragement, make your gift personal with a message just for them.</p><a href="#shop" style="border-bottom:1px solid;padding-bottom:6px;font-size:12px">Find a thoughtful gift &nbsp; ↗</a></div></section><section class="section" id="occasions"><div class="eyebrow">There’s always a reason</div><h2>Give a little happiness.</h2><p class="occasion-intro">Choose the moment. Find a gift that says just the right thing.</p><div class="occasion">
-<a href="#shop" onclick="setOccasion('Birthday')"><span class="occasion-icon">✷</span><small>MAKE THEIR DAY</small><h3>Birthdays</h3><p>Celebrate them with a birthday basket, a cheerful mug, and something sweet.</p><span>Shop birthday gifts ↗</span></a>
-<a href="#shop" onclick="setOccasion('Thank you')"><span class="occasion-icon">♡</span><small>SAY IT WITH A GIFT</small><h3>Thank you</h3><p>Show your appreciation with coffee, tea, chocolate, or a thoughtful little treat.</p><span>Shop thank-you gifts ↗</span></a>
-<a href="#shop" onclick="setOccasion('Encouragement')"><span class="occasion-icon">☀</span><small>A LITTLE LIFT</small><h3>Encouragement &amp; get well</h3><p>Send a bright reminder that you’re thinking of them and cheering them on.</p><span>Shop uplifting gifts ↗</span></a>
-<a href="#shop" onclick="setOccasion('Sympathy')"><span class="occasion-icon">❧</span><small>WHEN WORDS ARE HARD</small><h3>Sympathy &amp; remembrance</h3><p>A meaningful keepsake or a comforting candle to show someone you care.</p><span>Shop remembrance gifts ↗</span></a>
-<a href="#shop" onclick="setOccasion('Holiday')"><span class="occasion-icon">✧</span><small>SHARE THE SEASON</small><h3>Holidays &amp; celebrations</h3><p>Gather cozy favorites and sweet treats for a little seasonal gift giving.</p><span>Shop holiday gifts ↗</span></a>
-<a href="#shop" onclick="setOccasion('Just because')"><span class="occasion-icon">✿</span><small>NO OCCASION NEEDED</small><h3>Just because</h3><p>Surprise a friend, brighten a morning, or treat yourself to something lovely.</p><span>Shop everyday gifts ↗</span></a></div></section></main><footer><div><a class="logo" href="#">the thoughtful basket<span> ✷</span></a><p>Thoughtful gifts. Everyday joy.<br>A small business owned by Laura Lawler.</p></div><div><p>SHOP PREVIEW<br>This concept shop uses sample prices.<br>Checkout creates an order summary; no payment is collected.</p></div><div><a href="#shop">Back to the gift edit ↑</a><p>© 2026 The Thoughtful Basket</p></div></footer><div class="overlay" id="overlay" onclick="toggleCart(false)"></div><aside class="drawer" id="cart" aria-label="Shopping bag" aria-hidden="true"><button class="close" aria-label="Close shopping bag" onclick="toggleCart(false)">×</button><h2>Your little joys</h2><div id="cart-content"></div><div id="checkout" class="checkout"><h3>A personal touch</h3><form id="order-form"><label for="name">Recipient name</label><input id="name" required placeholder="Who’s the lucky one?"><label for="message">Gift message (optional)</label><textarea id="message" rows="3" placeholder="A little note from you…"></textarea><button class="btn" type="submit">Download order summary</button><p class="small">Preview only. No order is sent and no payment is collected. Shipping and taxes are not calculated.</p></form></div></aside><div class="toast" role="status" id="toast"></div><script src="script.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Thoughtful Basket | Lovely Gifts</title>
+
+    <meta name="description"
+        content="Thoughtful gift baskets, mugs, candles, soaps, coffee, tea, and sweet little treats.">
+
+    <style>
+        /* ========================================
+       COLORS AND BASE STYLES
+    ======================================== */
+
+        :root {
+            --cream: #faf6ef;
+            --white: #fffdf8;
+            --ink: #49382e;
+            --muted: #82756b;
+            --peach: #ecd4bf;
+            --rose: #a96c58;
+            --sage: #dce0cf;
+            --line: #dfd5c8;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 30px;
+        }
+
+        body {
+            margin: 0;
+            background: var(--cream);
+            color: var(--ink);
+            font: 16px/1.65 Arial, sans-serif;
+        }
+
+        body.cart-open {
+            overflow: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        textarea {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        button:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: 3px solid var(--rose);
+            outline-offset: 4px;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: Georgia, serif;
+            font-weight: 400;
+            line-height: 1.12;
+        }
+
+        h1 {
+            margin: 25px 0;
+            font-size: clamp(54px, 6.5vw, 94px);
+            letter-spacing: -3px;
+        }
+
+        h1 em {
+            color: var(--rose);
+            font-weight: 400;
+        }
+
+        h2 {
+            margin: 15px 0 25px;
+            font-size: clamp(35px, 3.7vw, 52px);
+            letter-spacing: -1px;
+        }
+
+        h3 {
+            margin: 15px 0;
+            font-size: 26px;
+        }
+
+        .eyebrow {
+            color: var(--rose);
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 24px;
+            border: 1px solid var(--ink);
+            border-radius: 3px;
+            background: var(--ink);
+            color: var(--white);
+            font-size: 12px;
+        }
+
+        .button:hover {
+            border-color: var(--rose);
+            background: var(--rose);
+        }
+
+        .small {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        /* ========================================
+       HEADER
+    ======================================== */
+
+        .announcement {
+            padding: 10px 18px;
+            background: var(--sage);
+            text-align: center;
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        .site-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+            padding: 27px 6%;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .logo {
+            font: 28px Georgia, serif;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--rose);
+        }
+
+        .navigation {
+            display: flex;
+            gap: 30px;
+            font-size: 13px;
+        }
+
+        .bag-button {
+            padding: 10px 18px;
+            border: 1px solid var(--line);
+            border-radius: 30px;
+            background: transparent;
+            color: var(--ink);
+            font-size: 13px;
+        }
+
+        .bag-count {
+            margin-left: 8px;
+            padding: 3px 7px;
+            border-radius: 50%;
+            background: var(--ink);
+            color: white;
+        }
+
+        /* ========================================
+       HERO
+    ======================================== */
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 6%;
+            padding: 60px 6% 75px;
+        }
+
+        .hero-copy p {
+            max-width: 470px;
+            margin-bottom: 30px;
+            color: var(--muted);
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image>img {
+            width: 100%;
+            height: 530px;
+            border-radius: 230px 230px 12px 12px;
+            background: #eddfce;
+            object-fit: cover;
+        }
+
+        .gift-note {
+            position: absolute;
+            right: -15px;
+            bottom: 25px;
+            padding: 24px;
+            background: var(--white);
+            box-shadow: 0 12px 40px #49382e15;
+            transform: rotate(-5deg);
+            font: italic 24px/1.2 Georgia, serif;
+        }
+
+        .gift-note small {
+            display: block;
+            margin-top: 12px;
+            font: 8px/1.6 Arial, sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .benefits {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 21px 5%;
+            background: #eee3d6;
+            font-size: 12px;
+        }
+
+        /* ========================================
+       PRODUCT CATALOG
+    ======================================== */
+
+        .section {
+            padding: 80px 6%;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 25px;
+        }
+
+        .section-heading>p {
+            color: var(--muted);
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin: 25px 0 35px;
+        }
+
+        .filter-button {
+            padding: 9px 16px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: transparent;
+            color: var(--ink);
+            font-size: 12px;
+        }
+
+        .filter-button[aria-pressed="true"] {
+            border-color: var(--ink);
+            background: var(--ink);
+            color: white;
+        }
+
+        .occasion-filter {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            color: var(--rose);
+            font-size: 13px;
+        }
+
+        .occasion-filter button {
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: inherit;
+            text-decoration: underline;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 35px 22px;
+        }
+
+        .product-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 120px 120px 4px 4px;
+            background: #eee1cf;
+        }
+
+        .product-image img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .product:hover .product-image img {
+            transform: scale(1.03);
+        }
+
+        .product-category {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            padding: 4px 9px;
+            background: #fffdf8eb;
+            font-size: 9px;
+        }
+
+        .product-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .product h3 {
+            margin: 18px 0 8px;
+            font-size: 21px;
+        }
+
+        .product-price {
+            padding-top: 21px;
+            white-space: nowrap;
+            font-size: 14px;
+        }
+
+        .product-description {
+            min-height: 40px;
+            margin: 0 0 14px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .add-button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--ink);
+            font-size: 12px;
+        }
+
+        .add-button:hover {
+            border-color: var(--peach);
+            background: var(--peach);
+        }
+
+        /* ========================================
+       OWNER STORY
+    ======================================== */
+
+        .owner-story {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 10%;
+            padding: 75px 8%;
+            background: var(--peach);
+        }
+
+        .owner-photo img {
+            width: 100%;
+            height: 470px;
+            border-radius: 165px 165px 3px 3px;
+            object-fit: cover;
+        }
+
+        .owner-caption {
+            display: block;
+            margin-top: 15px;
+            font-size: 11px;
+        }
+
+        .owner-copy p {
+            max-width: 510px;
+            font-size: 14px;
+        }
+
+        .text-link {
+            display: inline-block;
+            padding-bottom: 5px;
+            border-bottom: 1px solid;
+            font-size: 12px;
+        }
+
+        /* ========================================
+       OCCASIONS
+    ======================================== */
+
+        .occasion-intro {
+            color: var(--muted);
+        }
+
+        .occasion-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .occasion-card {
+            display: flex;
+            flex-direction: column;
+            min-height: 300px;
+            padding: 30px;
+            border-radius: 4px;
+            background: #eee1d0;
+            transition: transform 0.2s;
+        }
+
+        .occasion-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .occasion-card:nth-child(2) {
+            background: #e2e5d7;
+        }
+
+        .occasion-card:nth-child(3) {
+            background: #f2dfb8;
+        }
+
+        .occasion-card:nth-child(4) {
+            background: #dddfe3;
+        }
+
+        .occasion-card:nth-child(5) {
+            background: #e8d5ce;
+        }
+
+        .occasion-card:nth-child(6) {
+            background: #e5e1d4;
+        }
+
+        .occasion-icon {
+            margin-bottom: 20px;
+            font-size: 30px;
+        }
+
+        .occasion-card small {
+            font-size: 9px;
+            letter-spacing: 2px;
+        }
+
+        .occasion-card h3 {
+            font-size: 28px;
+        }
+
+        .occasion-card p {
+            margin: 0 0 25px;
+            font-size: 13px;
+        }
+
+        .occasion-link {
+            align-self: flex-start;
+            margin-top: auto;
+            border-bottom: 1px solid #49382e55;
+            font-size: 11px;
+        }
+
+        /* ========================================
+       FOOTER
+    ======================================== */
+
+        .site-footer {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr 0.8fr;
+            gap: 35px;
+            padding: 55px 6%;
+            border-top: 1px solid var(--line);
+        }
+
+        .site-footer p,
+        .site-footer>div>a:not(.logo) {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .site-footer .logo {
+            font-size: 24px;
+        }
+
+        /* ========================================
+       SHOPPING BAG
+    ======================================== */
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 20;
+            visibility: hidden;
+            opacity: 0;
+            background: #2a211b66;
+            transition: opacity 0.2s;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 21;
+            width: min(500px, 100%);
+            height: 100dvh;
+            overflow-y: auto;
+            padding: 35px;
+            background: var(--white);
+            transform: translateX(100%);
+            transition: transform 0.25s;
+        }
+
+        .cart-open .overlay {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .cart-open .cart-drawer {
+            transform: translateX(0);
+        }
+
+        .cart-drawer h2 {
+            padding-right: 25px;
+            font-size: 36px;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            border: 0;
+            background: transparent;
+            color: var(--ink);
+            font-size: 30px;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 72px 1fr;
+            gap: 16px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .cart-item img {
+            width: 72px;
+            height: 82px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
+        .cart-item h3 {
+            margin: 0 0 7px;
+            font-size: 19px;
+        }
+
+        .cart-item p {
+            margin: 0 0 12px;
+            font-size: 12px;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            font-size: 13px;
+        }
+
+        .quantity button {
+            padding: 3px 10px;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--ink);
+        }
+
+        .quantity .remove-button {
+            margin-left: auto;
+            padding: 0;
+            border: 0;
+            font-size: 11px;
+            text-decoration: underline;
+        }
+
+        .subtotal {
+            display: flex;
+            justify-content: space-between;
+            padding: 25px 0;
+            font-size: 17px;
+        }
+
+        .checkout {
+            padding-top: 10px;
+            border-top: 1px solid var(--line);
+        }
+
+        .checkout label {
+            display: block;
+            margin: 18px 0 7px;
+            font-size: 12px;
+        }
+
+        .checkout input,
+        .checkout textarea {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--line);
+            border-radius: 2px;
+            background: var(--cream);
+            color: var(--ink);
+        }
+
+        .checkout textarea {
+            resize: vertical;
+        }
+
+        .checkout .button {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .empty-message {
+            padding: 30px 0;
+            color: var(--muted);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            z-index: 30;
+            max-width: 90vw;
+            padding: 14px 22px;
+            border-radius: 4px;
+            opacity: 0;
+            pointer-events: none;
+            background: var(--ink);
+            color: var(--white);
+            transform: translate(-50%, 15px);
+            transition: 0.2s;
+            font-size: 13px;
+        }
+
+        .toast.visible {
+            opacity: 1;
+            transform: translate(-50%, 0);
+        }
+
+        /* ========================================
+       RESPONSIVE LAYOUT
+    ======================================== */
+
+        @media (min-width: 1600px) {
+
+            main,
+            .site-header,
+            .site-footer {
+                max-width: 1600px;
+                margin-inline: auto;
+            }
+        }
+
+        @media (max-width: 1000px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .occasion-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-image>img {
+                height: 470px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .site-header {
+                flex-wrap: wrap;
+                gap: 15px;
+                padding: 20px 5%;
+            }
+
+            .logo {
+                font-size: 25px;
+            }
+
+            .navigation {
+                order: 3;
+                justify-content: center;
+                width: 100%;
+                gap: 25px;
+            }
+
+            .bag-button {
+                margin-left: auto;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 45px;
+                padding: 40px 6% 55px;
+            }
+
+            h1 {
+                font-size: 64px;
+            }
+
+            h2 {
+                font-size: 37px;
+            }
+
+            .hero-image {
+                margin-inline: 10px;
+            }
+
+            .hero-image>img {
+                height: 440px;
+            }
+
+            .gift-note {
+                right: -10px;
+                font-size: 21px;
+            }
+
+            .benefits {
+                gap: 12px;
+                font-size: 10px;
+            }
+
+            .section {
+                padding: 55px 6%;
+            }
+
+            .section-heading {
+                display: block;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px 15px;
+            }
+
+            .product-heading {
+                display: block;
+            }
+
+            .product h3 {
+                font-size: 18px;
+            }
+
+            .product-price {
+                padding: 0 0 9px;
+            }
+
+            .product-description {
+                min-height: 60px;
+            }
+
+            .owner-story {
+                grid-template-columns: 1fr;
+                gap: 35px;
+                padding: 55px 7%;
+            }
+
+            .owner-photo img {
+                height: 390px;
+            }
+
+            .occasion-grid,
+            .site-footer {
+                grid-template-columns: 1fr;
+            }
+
+            .occasion-card {
+                min-height: 260px;
+            }
+
+            .cart-drawer {
+                padding: 28px 22px;
+            }
+
+            .announcement {
+                font-size: 8px;
+                letter-spacing: 1px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="announcement">
+        A LITTLE COMFORT. A LITTLE JOY. A GIFT THAT FEELS PERSONAL.
+    </div>
+
+    <header class="site-header">
+        <a class="logo" href="#">
+            the thoughtful basket<span> ✷</span>
+        </a>
+
+        <nav class="navigation" aria-label="Main navigation">
+            <a href="#shop">Shop all</a>
+            <a href="#occasions">By occasion</a>
+            <a href="#story">Meet Laura</a>
+        </nav>
+
+        <button class="bag-button" id="open-cart" type="button" aria-controls="cart" aria-expanded="false">
+            Bag <span class="bag-count" id="cart-count">0</span>
+        </button>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-copy">
+                <div class="eyebrow">
+                    Thoughtfully chosen · Beautifully given
+                </div>
+
+                <h1>
+                    Little things.<br>
+                    <em>Lovely gifts.</em>
+                </h1>
+
+                <p>
+                    A favorite mug. Something sweet. A moment of calm.
+                    Discover feel-good gifts for the people who make life beautiful.
+                </p>
+
+                <a class="button" href="#shop">
+                    Find their perfect gift ↗
+                </a>
+            </div>
+
+            <div class="hero-image">
+                <!-- Replace this path with your real hero photograph. -->
+                <img id="hero-photo" src="assets/gift-basket-hero.png" alt="A thoughtful gift basket" width="800"
+                    height="800">
+
+                <div class="gift-note">
+                    Good things come<br>
+                    in thoughtful packages.
+
+                    <small>FOR EVERY LITTLE OCCASION</small>
+                </div>
+            </div>
+        </section>
+
+        <div class="benefits">
+            <span>✧ Gifts for everyday moments</span>
+            <span>♡ Add your personal message</span>
+            <span>✷ A little something for everyone</span>
+        </div>
+
+        <section class="section" id="shop">
+            <div class="section-heading">
+                <div>
+                    <div class="eyebrow">The gift edit</div>
+                    <h2>Something they’ll love.</h2>
+                </div>
+
+                <p>Small delights. Meaningful moments.</p>
+            </div>
+
+            <div class="filters" id="filters" aria-label="Product categories"></div>
+
+            <div id="occasion-filter"></div>
+
+            <div class="product-grid" id="products"></div>
+
+            <p class="small">
+                Preview collection. Products, prices, and placeholder illustrations
+                are examples. Replace them with your real catalog before launch.
+            </p>
+
+            <noscript>
+                Please enable JavaScript to browse the preview catalog.
+            </noscript>
+        </section>
+
+        <section class="owner-story" id="story">
+            <div class="owner-photo">
+                <!-- Replace this path with Laura’s real photograph. -->
+                <img id="owner-photo" src="assets/laura-lawler.jpg" alt="Laura Lawler, owner of The Thoughtful Basket"
+                    loading="lazy">
+
+                <span class="owner-caption">
+                    Laura Lawler · Small business owner
+                </span>
+            </div>
+
+            <div class="owner-copy">
+                <div class="eyebrow">
+                    A small business with a personal touch
+                </div>
+
+                <h2>
+                    Meet Laura.<br>
+                    The heart behind the gifts.
+                </h2>
+
+                <p>
+                    The Thoughtful Basket is a small business owned by
+                    <strong>Laura Lawler</strong>. From cheerful mugs to comforting
+                    treats and gift baskets, this is a place to find a little
+                    something that says you care.
+                </p>
+
+                <p>
+                    Whether you’re celebrating a birthday, saying thank you,
+                    or sending encouragement, make your gift personal with
+                    a message just for them.
+                </p>
+
+                <a class="text-link" href="#shop">
+                    Find a thoughtful gift ↗
+                </a>
+            </div>
+        </section>
+
+        <section class="section" id="occasions">
+            <div class="eyebrow">There’s always a reason</div>
+
+            <h2>Give a little happiness.</h2>
+
+            <p class="occasion-intro">
+                Choose the moment. Find a gift that says just the right thing.
+            </p>
+
+            <div class="occasion-grid" id="occasion-grid"></div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div>
+            <a class="logo" href="#">
+                the thoughtful basket<span> ✷</span>
+            </a>
+
+            <p>
+                Thoughtful gifts. Everyday joy.<br>
+                A small business owned by Laura Lawler.
+            </p>
+        </div>
+
+        <div>
+            <p>
+                SHOP PREVIEW<br>
+                Sample products and prices.<br>
+                Checkout downloads an order summary.<br>
+                No payment is collected and no order is sent.
+            </p>
+        </div>
+
+        <div>
+            <a href="#shop">Back to the gift edit ↑</a>
+
+            <p>
+                © <span id="year"></span> The Thoughtful Basket
+            </p>
+        </div>
+    </footer>
+
+    <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+    <aside class="cart-drawer" id="cart" role="dialog" aria-modal="true" aria-labelledby="cart-title" aria-hidden="true"
+        inert>
+        <button class="close-button" id="close-cart" type="button" aria-label="Close shopping bag">
+            ×
+        </button>
+
+        <h2 id="cart-title">Your little joys</h2>
+
+        <div id="cart-content"></div>
+
+        <div class="checkout" id="checkout" hidden>
+            <h3>A personal touch</h3>
+
+            <form id="order-form">
+                <label for="recipient">Recipient name</label>
+
+                <input id="recipient" name="recipient" maxlength="100" placeholder="Who’s the lucky one?" required>
+
+                <label for="gift-message">Gift message (optional)</label>
+
+                <textarea id="gift-message" name="message" rows="3" maxlength="1000"
+                    placeholder="A little note from you…"></textarea>
+
+                <button class="button" type="submit">
+                    Download order summary
+                </button>
+
+                <p class="small">
+                    Preview only. No order is sent and no payment is collected.
+                    Shipping, taxes, availability, and delivery are not calculated.
+                </p>
+            </form>
+        </div>
+    </aside>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+        "use strict";
+
+        /* ========================================
+           SAMPLE CATALOG
+    
+           Replace names, descriptions, prices, and
+           image paths with your real product data.
+        ======================================== */
+
+        const PRODUCTS = [
+            {
+                id: "birthday-basket",
+                name: "Birthday Joy Basket",
+                category: "Gift baskets",
+                price: 68,
+                description: "Cozy favorites and sweet little treats.",
+                occasions: ["Birthday", "Just because"],
+                image: "assets/birthday-basket.jpg",
+                symbol: "basket"
+            },
+            {
+                id: "thank-you-basket",
+                name: "A Thoughtful Thank You",
+                category: "Gift baskets",
+                price: 58,
+                description: "Coffee, chocolate, and a little appreciation.",
+                occasions: ["Thank you", "Holiday"],
+                image: "assets/thank-you-basket.jpg",
+                symbol: "basket"
+            },
+            {
+                id: "comfort-basket",
+                name: "Comfort & Care Basket",
+                category: "Gift baskets",
+                price: 64,
+                description: "A gentle collection for someone you care about.",
+                occasions: ["Encouragement", "Sympathy"],
+                image: "assets/comfort-basket.jpg",
+                symbol: "basket"
+            },
+            {
+                id: "morning-mug",
+                name: "Slow Morning Mug",
+                category: "Mugs",
+                price: 22,
+                description: "A warm-toned mug for everyday rituals.",
+                occasions: ["Birthday", "Thank you", "Just because"],
+                image: "assets/morning-mug.jpg",
+                symbol: "mug"
+            },
+            {
+                id: "quiet-candle",
+                name: "A Quiet Moment Candle",
+                category: "Candles & soap",
+                price: 24,
+                description: "A simple candle for a comforting corner.",
+                occasions: ["Sympathy", "Encouragement", "Just because"],
+                image: "assets/quiet-candle.jpg",
+                symbol: "candle"
+            },
+            {
+                id: "soap-set",
+                name: "Botanical Soap Set",
+                category: "Candles & soap",
+                price: 18,
+                description: "A pretty finishing touch for a thoughtful gift.",
+                occasions: ["Thank you", "Holiday", "Birthday"],
+                image: "assets/soap-set.jpg",
+                symbol: "soap"
+            },
+            {
+                id: "coffee",
+                name: "Morning Coffee",
+                category: "Coffee & tea",
+                price: 16,
+                description: "A little something for their morning pause.",
+                occasions: ["Thank you", "Birthday", "Just because"],
+                image: "assets/coffee.jpg",
+                symbol: "coffee"
+            },
+            {
+                id: "tea",
+                name: "Afternoon Tea",
+                category: "Coffee & tea",
+                price: 14,
+                description: "A comforting addition to a personal gift.",
+                occasions: ["Encouragement", "Sympathy", "Just because"],
+                image: "assets/tea.jpg",
+                symbol: "tea"
+            },
+            {
+                id: "cookies",
+                name: "Something Sweet Cookies",
+                category: "Sweet treats",
+                price: 12,
+                description: "A small, sweet surprise for their basket.",
+                occasions: ["Birthday", "Thank you", "Holiday"],
+                image: "assets/cookies.jpg",
+                symbol: "cookies"
+            },
+            {
+                id: "chocolate",
+                name: "Chocolate Little Luxuries",
+                category: "Sweet treats",
+                price: 15,
+                description: "A little indulgence for a thoughtful moment.",
+                occasions: ["Holiday", "Birthday", "Just because"],
+                image: "assets/chocolate.jpg",
+                symbol: "chocolate"
+            }
+        ];
+
+        const CATEGORIES = [
+            "All gifts",
+            "Gift baskets",
+            "Mugs",
+            "Candles & soap",
+            "Coffee & tea",
+            "Sweet treats"
+        ];
+
+        const OCCASIONS = [
+            {
+                filter: "Birthday",
+                title: "Birthdays",
+                eyebrow: "MAKE THEIR DAY",
+                icon: "✷",
+                description: "Celebrate them with a cheerful basket and something sweet.",
+                link: "Shop birthday gifts"
+            },
+            {
+                filter: "Thank you",
+                title: "Thank you",
+                eyebrow: "SAY IT WITH A GIFT",
+                icon: "♡",
+                description: "Show your appreciation with a thoughtful little treat.",
+                link: "Shop thank-you gifts"
+            },
+            {
+                filter: "Encouragement",
+                title: "Encouragement & get well",
+                eyebrow: "A LITTLE LIFT",
+                icon: "☀",
+                description: "Send a reminder that you’re thinking of them.",
+                link: "Shop uplifting gifts"
+            },
+            {
+                filter: "Sympathy",
+                title: "Sympathy & remembrance",
+                eyebrow: "WHEN WORDS ARE HARD",
+                icon: "❧",
+                description: "A comforting gesture to show someone you care.",
+                link: "Shop remembrance gifts"
+            },
+            {
+                filter: "Holiday",
+                title: "Holidays & celebrations",
+                eyebrow: "SHARE THE SEASON",
+                icon: "✧",
+                description: "Gather cozy favorites for seasonal gift giving.",
+                link: "Shop holiday gifts"
+            },
+            {
+                filter: "Just because",
+                title: "Just because",
+                eyebrow: "NO OCCASION NEEDED",
+                icon: "✿",
+                description: "Surprise a friend or brighten an ordinary morning.",
+                link: "Shop everyday gifts"
+            }
+        ];
+
+        const STORAGE_KEY = "thoughtful-basket-cart-v1";
+
+        const currency = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD"
+        });
+
+        const $ = selector => document.querySelector(selector);
+
+        let selectedCategory = "All gifts";
+        let selectedOccasion = "";
+        let cart = [];
+        let previousFocus = null;
+        let toastTimer;
+
+        /* ========================================
+           SAFE DOM HELPERS
+        ======================================== */
+
+        function createElement(tag, attributes = {}, text = "") {
+            const element = document.createElement(tag);
+
+            for (const [name, value] of Object.entries(attributes)) {
+                element.setAttribute(name, value);
+            }
+
+            if (text) {
+                element.textContent = text;
+            }
+
+            return element;
+        }
+
+        function getProduct(id) {
+            return PRODUCTS.find(product => product.id === id);
+        }
+
+        /* ========================================
+           IMAGE PLACEHOLDERS
+    
+           These illustrations appear only if the
+           original photograph is unavailable.
+        ======================================== */
+
+        function placeholderImage(type) {
+            const drawings = {
+                basket: `
+          <path d="M180 400 Q400 70 620 400"
+            fill="none" stroke="#b18b58" stroke-width="25"/>
+          <rect x="250" y="290" width="125" height="170"
+            rx="8" fill="#b6bc9e"/>
+          <rect x="395" y="330" width="100" height="140"
+            rx="8" fill="#ba896f"/>
+          <rect x="510" y="270" width="80" height="200"
+            rx="6" fill="#d6b885"/>
+          <path d="M170 420 H630 L575 615 H225 Z" fill="#b48b56"/>
+          <path d="M190 470 H610 M205 520 H595 M220 570 H580"
+            stroke="#e0bc81" stroke-width="9"/>
+          <path d="M280 430 L295 605 M400 430 V605 M520 430 L505 605"
+            stroke="#e0bc81" stroke-width="9"/>
+        `,
+                mug: `
+          <path d="M260 340 H510 V535 Q510 600 385 600
+            Q260 600 260 535 Z" fill="#b77f63"/>
+          <path d="M515 365 C650 350 650 530 515 515"
+            fill="none" stroke="#b77f63" stroke-width="34"/>
+          <ellipse cx="385" cy="340" rx="125" ry="25" fill="#ebc6aa"/>
+          <ellipse cx="385" cy="342" rx="105" ry="15" fill="#694b35"/>
+        `,
+                candle: `
+          <rect x="275" y="350" width="250" height="250"
+            rx="18" fill="#c29c6c"/>
+          <ellipse cx="400" cy="350" rx="125" ry="27" fill="#f8e8ca"/>
+          <path d="M400 343 V300" stroke="#664d3c" stroke-width="5"/>
+          <path d="M400 300 Q355 250 400 205 Q445 250 400 300"
+            fill="#dca852"/>
+          <rect x="310" y="420" width="180" height="105" fill="#f5ead7"/>
+        `,
+                soap: `
+          <rect x="190" y="375" width="285" height="160"
+            rx="30" fill="#c3c8ae" transform="rotate(-12 330 455)"/>
+          <rect x="365" y="450" width="250" height="150"
+            rx="30" fill="#e4c3ad" transform="rotate(8 490 525)"/>
+        `,
+                coffee: `
+          <path d="M270 270 H530 L555 605 H245 Z" fill="#b99c77"/>
+          <rect x="280" y="365" width="240" height="135" fill="#f6ead6"/>
+          <text x="400" y="445" text-anchor="middle"
+            font-family="Georgia" font-size="35" fill="#775c43">coffee</text>
+        `,
+                tea: `
+          <path d="M270 270 H530 L555 605 H245 Z" fill="#a8ae92"/>
+          <rect x="280" y="365" width="240" height="135" fill="#f6ead6"/>
+          <text x="400" y="445" text-anchor="middle"
+            font-family="Georgia" font-size="35" fill="#775c43">tea</text>
+        `,
+                cookies: `
+          <ellipse cx="400" cy="585" rx="220" ry="40" fill="#fff7eb"/>
+          <circle cx="305" cy="465" r="95" fill="#c7995f"/>
+          <circle cx="470" cy="455" r="95" fill="#c7995f"/>
+          <circle cx="400" cy="550" r="95" fill="#d3a76c"/>
+          <g fill="#6f4d35">
+            <circle cx="285" cy="440" r="12"/>
+            <circle cx="330" cy="485" r="12"/>
+            <circle cx="450" cy="425" r="12"/>
+            <circle cx="500" cy="475" r="12"/>
+            <circle cx="375" cy="530" r="12"/>
+            <circle cx="430" cy="570" r="12"/>
+          </g>
+        `,
+                chocolate: `
+          <rect x="260" y="285" width="280" height="320"
+            rx="8" fill="#6d4933"/>
+          <path d="M355 295 V595 M445 295 V595
+            M270 395 H530 M270 495 H530"
+            stroke="#986a49" stroke-width="10"/>
+          <rect x="245" y="480" width="310" height="140" fill="#d7b59b"/>
+        `
+            };
+
+            const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg"
+          width="800" height="800" viewBox="0 0 800 800">
+          <rect width="800" height="800" fill="#eee1cf"/>
+          <circle cx="415" cy="310" r="230" fill="#f8efe1"/>
+          <ellipse cx="400" cy="635" rx="225" ry="23" fill="#d7c3aa"/>
+          ${drawings[type] || drawings.basket}
+          <text x="400" y="735" text-anchor="middle"
+            font-family="Arial" font-size="13"
+            letter-spacing="2" fill="#927c65">
+            ILLUSTRATIVE PREVIEW
+          </text>
+        </svg>
+      `;
+
+            return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+        }
+
+        function createProductImage(product) {
+            const image = createElement("img", {
+                src: product.image,
+                alt: product.name,
+                loading: "lazy",
+                width: "800",
+                height: "800"
+            });
+
+            image.addEventListener("error", () => {
+                image.src = placeholderImage(product.symbol);
+                image.alt = product.name + " — illustrative placeholder";
+            }, { once: true });
+
+            return image;
+        }
+
+        /* ========================================
+           CATALOG AND FILTERS
+        ======================================== */
+
+        function renderFilters() {
+            const container = $("#filters");
+            container.replaceChildren();
+
+            for (const category of CATEGORIES) {
+                const button = createElement("button", {
+                    type: "button",
+                    class: "filter-button",
+                    "aria-pressed": String(category === selectedCategory)
+                }, category);
+
+                button.addEventListener("click", () => {
+                    selectedCategory = category;
+                    renderFilters();
+                    renderProducts();
+                });
+
+                container.append(button);
+            }
+        }
+
+        function renderProducts() {
+            const grid = $("#products");
+            const occasionContainer = $("#occasion-filter");
+
+            grid.replaceChildren();
+            occasionContainer.replaceChildren();
+
+            if (selectedOccasion) {
+                const bar = createElement("div", {
+                    class: "occasion-filter"
+                });
+
+                const clearButton = createElement("button", {
+                    type: "button"
+                }, "Clear occasion");
+
+                clearButton.addEventListener("click", () => {
+                    selectOccasion("");
+                });
+
+                bar.append(
+                    createElement("span", {}, "Occasion: " + selectedOccasion),
+                    clearButton
+                );
+
+                occasionContainer.append(bar);
+            }
+
+            const visibleProducts = PRODUCTS.filter(product => {
+                const matchesCategory =
+                    selectedCategory === "All gifts" ||
+                    product.category === selectedCategory;
+
+                const matchesOccasion =
+                    !selectedOccasion ||
+                    product.occasions.includes(selectedOccasion);
+
+                return matchesCategory && matchesOccasion;
+            });
+
+            if (!visibleProducts.length) {
+                grid.append(createElement(
+                    "p",
+                    { class: "empty-message" },
+                    "No gifts match this combination. Try another category or clear the occasion."
+                ));
+
+                return;
+            }
+
+            for (const product of visibleProducts) {
+                const card = createElement("article", {
+                    class: "product"
+                });
+
+                const imageContainer = createElement("div", {
+                    class: "product-image"
+                });
+
+                imageContainer.append(
+                    createProductImage(product),
+                    createElement("span", {
+                        class: "product-category"
+                    }, product.category)
+                );
+
+                const heading = createElement("div", {
+                    class: "product-heading"
+                });
+
+                heading.append(
+                    createElement("h3", {}, product.name),
+                    createElement("div", {
+                        class: "product-price"
+                    }, currency.format(product.price))
+                );
+
+                const addButton = createElement("button", {
+                    type: "button",
+                    class: "add-button",
+                    "aria-label": "Add " + product.name + " to bag"
+                }, "Add to bag +");
+
+                addButton.addEventListener("click", () => {
+                    addToCart(product.id);
+                });
+
+                card.append(
+                    imageContainer,
+                    heading,
+                    createElement("p", {
+                        class: "product-description"
+                    }, product.description),
+                    addButton
+                );
+
+                grid.append(card);
+            }
+        }
+
+        function selectOccasion(occasion) {
+            selectedOccasion = occasion;
+            selectedCategory = "All gifts";
+
+            renderFilters();
+            renderProducts();
+        }
+
+        function renderOccasions() {
+            const container = $("#occasion-grid");
+            container.replaceChildren();
+
+            for (const occasion of OCCASIONS) {
+                const card = createElement("a", {
+                    href: "#shop",
+                    class: "occasion-card"
+                });
+
+                card.append(
+                    createElement("span", {
+                        class: "occasion-icon",
+                        "aria-hidden": "true"
+                    }, occasion.icon),
+                    createElement("small", {}, occasion.eyebrow),
+                    createElement("h3", {}, occasion.title),
+                    createElement("p", {}, occasion.description),
+                    createElement("span", {
+                        class: "occasion-link"
+                    }, occasion.link + " ↗")
+                );
+
+                card.addEventListener("click", () => {
+                    selectOccasion(occasion.filter);
+                });
+
+                container.append(card);
+            }
+        }
+
+        /* ========================================
+           CART STORAGE
+        ======================================== */
+
+        function loadCart() {
+            try {
+                const stored = JSON.parse(
+                    localStorage.getItem(STORAGE_KEY) || "[]"
+                );
+
+                if (!Array.isArray(stored)) return;
+
+                cart = stored
+                    .filter(item =>
+                        item &&
+                        getProduct(item.id) &&
+                        Number.isInteger(item.quantity) &&
+                        item.quantity > 0 &&
+                        item.quantity <= 99
+                    )
+                    .filter((item, index, items) =>
+                        items.findIndex(other => other.id === item.id) === index
+                    )
+                    .map(item => ({
+                        id: item.id,
+                        quantity: item.quantity
+                    }));
+            } catch {
+                cart = [];
+            }
+        }
+
+        function saveCart() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+            } catch {
+                // The cart still works if browser storage is unavailable.
+            }
+
+            renderCart();
+        }
+
+        function addToCart(id) {
+            if (!getProduct(id)) return;
+
+            const existing = cart.find(item => item.id === id);
+
+            if (existing && existing.quantity >= 99) {
+                showToast("Maximum quantity is 99.");
+                return;
+            }
+
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ id, quantity: 1 });
+            }
+
+            saveCart();
+            showToast("Added to your shopping bag");
+        }
+
+        function changeQuantity(id, change) {
+            cart = cart
+                .map(item => item.id === id
+                    ? {
+                        ...item,
+                        quantity: Math.min(99, item.quantity + change)
+                    }
+                    : item
+                )
+                .filter(item => item.quantity > 0);
+
+            saveCart();
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            saveCart();
+        }
+
+        function renderCart() {
+            const container = $("#cart-content");
+
+            container.replaceChildren();
+
+            $("#cart-count").textContent = cart.reduce(
+                (total, item) => total + item.quantity,
+                0
+            );
+
+            $("#checkout").hidden = cart.length === 0;
+
+            if (!cart.length) {
+                container.append(createElement(
+                    "p",
+                    { class: "empty-message" },
+                    "Your bag is waiting for a little joy."
+                ));
+
+                return;
+            }
+
+            let subtotal = 0;
+
+            for (const item of cart) {
+                const product = getProduct(item.id);
+                if (!product) continue;
+
+                subtotal += product.price * item.quantity;
+
+                const row = createElement("article", {
+                    class: "cart-item"
+                });
+
+                const details = createElement("div");
+
+                details.append(
+                    createElement("h3", {}, product.name),
+                    createElement("p", {},
+                        currency.format(product.price) + " each")
+                );
+
+                const controls = createElement("div", {
+                    class: "quantity"
+                });
+
+                const decrease = createElement("button", {
+                    type: "button",
+                    "aria-label": "Decrease quantity of " + product.name
+                }, "−");
+
+                const increase = createElement("button", {
+                    type: "button",
+                    "aria-label": "Increase quantity of " + product.name
+                }, "+");
+
+                const remove = createElement("button", {
+                    type: "button",
+                    class: "remove-button",
+                    "aria-label": "Remove " + product.name
+                }, "Remove");
+
+                increase.disabled = item.quantity >= 99;
+
+                decrease.addEventListener("click", () => {
+                    changeQuantity(item.id, -1);
+                });
+
+                increase.addEventListener("click", () => {
+                    changeQuantity(item.id, 1);
+                });
+
+                remove.addEventListener("click", () => {
+                    removeFromCart(item.id);
+                });
+
+                controls.append(
+                    decrease,
+                    createElement("span", {}, String(item.quantity)),
+                    increase,
+                    remove
+                );
+
+                details.append(controls);
+                row.append(createProductImage(product), details);
+                container.append(row);
+            }
+
+            const totalRow = createElement("div", {
+                class: "subtotal"
+            });
+
+            totalRow.append(
+                createElement("span", {}, "Subtotal"),
+                createElement("strong", {}, currency.format(subtotal))
+            );
+
+            container.append(
+                totalRow,
+                createElement("p", {
+                    class: "small"
+                }, "Sample prices. Shipping and taxes are not included.")
+            );
+        }
+
+        /* ========================================
+           CART DIALOG
+        ======================================== */
+
+        function toggleCart(open) {
+            const drawer = $("#cart");
+            const mainContent = [
+                $(".site-header"),
+                $("main"),
+                $(".site-footer")
+            ];
+
+            if (open) {
+                previousFocus = document.activeElement;
+
+                document.body.classList.add("cart-open");
+                drawer.inert = false;
+                drawer.setAttribute("aria-hidden", "false");
+
+                $("#open-cart").setAttribute("aria-expanded", "true");
+                $("#close-cart").focus();
+
+                mainContent.forEach(element => {
+                    element.inert = true;
+                });
+            } else {
+                mainContent.forEach(element => {
+                    element.inert = false;
+                });
+
+                document.body.classList.remove("cart-open");
+                drawer.setAttribute("aria-hidden", "true");
+                drawer.inert = true;
+
+                $("#open-cart").setAttribute("aria-expanded", "false");
+
+                if (previousFocus && previousFocus.isConnected) {
+                    previousFocus.focus();
+                }
+            }
+        }
+
+        document.addEventListener("keydown", event => {
+            if (!document.body.classList.contains("cart-open")) return;
+
+            if (event.key === "Escape") {
+                toggleCart(false);
+                return;
+            }
+
+            if (event.key !== "Tab") return;
+
+            const controls = [
+                ...$("#cart").querySelectorAll(
+                    "button, a, input, textarea"
+                )
+            ].filter(element =>
+                !element.disabled && element.getClientRects().length > 0
+            );
+
+            const first = controls[0];
+            const last = controls[controls.length - 1];
+
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (
+                !event.shiftKey &&
+                document.activeElement === last
+            ) {
+                event.preventDefault();
+                first.focus();
+            }
+        });
+
+        /* ========================================
+           ORDER SUMMARY
+    
+           This does not submit an order or collect
+           payment. Connect a real backend before
+           enabling production checkout.
+        ======================================== */
+
+        $("#order-form").addEventListener("submit", event => {
+            event.preventDefault();
+
+            if (!cart.length) return;
+
+            const recipient = $("#recipient").value.trim();
+            const message = $("#gift-message").value.trim();
+
+            if (!recipient) {
+                $("#recipient").setCustomValidity(
+                    "Please enter a recipient name."
+                );
+
+                $("#recipient").reportValidity();
+                return;
+            }
+
+            let subtotal = 0;
+
+            const items = cart.map(item => {
+                const product = getProduct(item.id);
+                const lineTotal = product.price * item.quantity;
+
+                subtotal += lineTotal;
+
+                return (
+                    item.quantity + " × " + product.name +
+                    " — " + currency.format(lineTotal)
+                );
+            });
+
+            const summary = [
+                "THE THOUGHTFUL BASKET",
+                "PREVIEW ORDER SUMMARY",
+                "NOT A CONFIRMED ORDER",
+                "",
+                "Recipient: " + recipient,
+                "Gift message: " + (message || "(none)"),
+                "",
+                ...items,
+                "",
+                "Subtotal: " + currency.format(subtotal),
+                "",
+                "Sample products and prices.",
+                "No payment collected. No order sent.",
+                "Shipping, tax, availability, and delivery are not calculated."
+            ].join("\n");
+
+            const blob = new Blob([summary], {
+                type: "text/plain;charset=utf-8"
+            });
+
+            const url = URL.createObjectURL(blob);
+
+            const downloadLink = createElement("a", {
+                href: url,
+                download: "thoughtful-basket-order-summary.txt"
+            });
+
+            document.body.append(downloadLink);
+            downloadLink.click();
+            downloadLink.remove();
+
+            setTimeout(() => {
+                URL.revokeObjectURL(url);
+            }, 10000);
+
+            showToast("Summary downloaded. No order has been sent.");
+        });
+
+        $("#recipient").addEventListener("input", () => {
+            $("#recipient").setCustomValidity("");
+        });
+
+        /* ========================================
+           NOTIFICATIONS
+        ======================================== */
+
+        function showToast(message) {
+            const toast = $("#toast");
+
+            toast.textContent = message;
+            toast.classList.add("visible");
+
+            clearTimeout(toastTimer);
+
+            toastTimer = setTimeout(() => {
+                toast.classList.remove("visible");
+            }, 3000);
+        }
+
+        /* ========================================
+           STATIC IMAGE FALLBACKS
+        ======================================== */
+
+        const heroPhoto = $("#hero-photo");
+
+        function setHeroFallback() {
+            heroPhoto.src = placeholderImage("basket");
+            heroPhoto.alt = "Illustrative gift basket placeholder";
+        }
+
+        heroPhoto.addEventListener("error", setHeroFallback, {
+            once: true
+        });
+
+        if (heroPhoto.complete && heroPhoto.naturalWidth === 0) {
+            setHeroFallback();
+        }
+
+        const ownerPhoto = $("#owner-photo");
+
+        function setOwnerFallback() {
+            const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg"
+          width="700" height="800">
+          <rect width="700" height="800" fill="#d7bd9f"/>
+          <circle cx="350" cy="340" r="150" fill="#f5e7d6"/>
+          <text x="350" y="380" text-anchor="middle"
+            font-family="Georgia" font-size="100" fill="#936f52">
+            LL
+          </text>
+          <text x="350" y="575" text-anchor="middle"
+            font-family="Arial" font-size="21" fill="#775a43">
+            Add Laura’s real photograph here
+          </text>
+        </svg>
+      `;
+
+            ownerPhoto.src =
+                "data:image/svg+xml;charset=utf-8," +
+                encodeURIComponent(svg);
+
+            ownerPhoto.alt = "Placeholder for Laura Lawler’s photograph";
+        }
+
+        ownerPhoto.addEventListener("error", setOwnerFallback, {
+            once: true
+        });
+
+        if (ownerPhoto.complete && ownerPhoto.naturalWidth === 0) {
+            setOwnerFallback();
+        }
+
+        /* ========================================
+           INITIALIZE
+        ======================================== */
+
+        $("#open-cart").addEventListener("click", () => {
+            toggleCart(true);
+        });
+
+        $("#close-cart").addEventListener("click", () => {
+            toggleCart(false);
+        });
+
+        $("#overlay").addEventListener("click", () => {
+            toggleCart(false);
+        });
+
+        $("#year").textContent = new Date().getFullYear();
+
+        loadCart();
+        renderFilters();
+        renderProducts();
+        renderOccasions();
+        renderCart();
+    </script>
+</body>
+
+</html>
